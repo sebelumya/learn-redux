@@ -1,13 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import rootReducer from "./rootReducer";
+import { Provider } from "react-redux";
+import { legacy_createStore as createStore } from "redux";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const initialState = { user: "hamzah", balance: 200000 };
+const store = createStore(rootReducer, initialState);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
